@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Extremoz Turismo — descubra praias, lagoas, natureza, gastronomia e experiências em Extremoz, RN.">
+  <title>Extremoz Turismo | Descubra o paraíso</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <style>*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:'Montserrat',sans-serif;color:#18231f;background:#f7f7f3;line-height:1.6}.header{position:fixed;z-index:1000;top:0;left:0;width:100%;height:78px;display:flex;align-items:center;justify-content:space-between;padding:0 6%;background:rgba(10,30,24,.88);backdrop-filter:blur(12px);color:#fff}.logo{display:flex;flex-direction:column;text-decoration:none;color:inherit;font-weight:800;line-height:1}.logo span{font-size:20px;letter-spacing:2px}.logo small{font-size:10px;letter-spacing:4px;margin-top:5px;color:#d8b45a}.nav{display:flex;gap:30px}.nav a{color:#fff;text-decoration:none;font-size:13px;font-weight:600}.nav a:hover{color:#d8b45a}.menu-toggle{display:none;background:none;border:0;color:#fff;font-size:28px}.hero{height:100vh;min-height:650px;position:relative;display:flex;align-items:center;padding:0 9%;color:white;background:linear-gradient(120deg,#183b30,#52765b 55%,#d8b45a)}.hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,25,20,.82),rgba(5,25,20,.18))}.hero-content{position:relative;max-width:700px}.eyebrow{font-size:11px;font-weight:800;letter-spacing:3px;color:#d8b45a}.eyebrow.dark{color:#65836e}.hero h1{font-size:clamp(54px,9vw,105px);line-height:.95;margin:20px 0}.hero h1 strong{color:#d8b45a}.hero p{font-size:20px;max-width:520px}.hero-actions{display:flex;gap:12px;margin-top:35px}.btn{padding:14px 22px;border-radius:5px;text-decoration:none;font-weight:700;font-size:13px}.primary{background:#d8b45a;color:#16271f}.ghost{border:1px solid rgba(255,255,255,.6);color:white}.hero-scroll{position:absolute;bottom:28px;left:9%;font-size:10px;letter-spacing:2px;text-transform:uppercase}.section{padding:100px 8%;max-width:1400px;margin:auto}.intro{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end}.intro h2,.section h2{font-size:clamp(32px,5vw,58px);line-height:1.05;margin-top:15px}.intro h2 strong{color:#68836e}.intro p{font-size:17px;color:#64706b;max-width:570px}.section-heading{display:flex;justify-content:space-between;align-items:end;margin-bottom:25px}.filters{display:flex;gap:8px;margin-bottom:28px}.filter-btn{border:1px solid #d8ddd6;background:transparent;border-radius:30px;padding:10px 17px;cursor:pointer;font-family:inherit}.filter-btn.active,.filter-btn:hover{background:#183b30;color:#fff;border-color:#183b30}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}.card{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 10px 30px rgba(25,50,40,.07)}.card-image{height:240px;display:flex;align-items:flex-end;padding:18px;background-size:cover;background-position:center}.card-image span{background:#fff;padding:6px 10px;font-size:10px;font-weight:800;letter-spacing:1px}.image-lagoa{background-image:linear-gradient(135deg,#658f78,#b8d2ba)}.image-genipabu{background-image:linear-gradient(135deg,#d9b45b,#8bb0a0)}.image-dunas{background-image:linear-gradient(135deg,#c59c56,#e5d09a)}.image-historico{background-image:linear-gradient(135deg,#718778,#c3b68b)}.card-body{padding:22px}.card-body small{font-size:9px;letter-spacing:2px;color:#71857a;font-weight:800}.card-body h3{margin:8px 0;font-size:20px}.card-body p{font-size:13px;color:#718078;min-height:62px}.card-link{color:#183b30;font-size:12px;font-weight:800;text-decoration:none}.map-section{display:grid;grid-template-columns:38% 62%;min-height:620px;background:#183b30;color:#fff}.map-intro{padding:90px 12%;display:flex;flex-direction:column;justify-content:center}.map-intro h2{font-size:clamp(36px,5vw,60px);line-height:1.05;margin:16px 0}.map-intro strong{color:#d8b45a}.map-intro p{color:#c9d4ce;max-width:430px}.search-box{display:flex;margin-top:30px;background:#fff;padding:5px;border-radius:6px}.search-box input{min-width:0;flex:1;border:0;padding:13px;outline:0;font-family:inherit}.search-box button{border:0;background:#d8b45a;padding:0 18px;font-weight:800;cursor:pointer}.search-result{font-size:12px;margin-top:12px;color:#d8b45a;min-height:20px}#map{min-height:620px}.route-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.route{background:#fff;padding:35px;border-radius:10px;border-top:4px solid #d8b45a}.route span{font-size:12px;color:#8a9b91;font-weight:800}.route h3{font-size:23px;margin:20px 0 10px}.route p{color:#718078;font-size:14px;min-height:68px}.route button{border:0;background:none;color:#183b30;font-weight:800;cursor:pointer;margin-top:20px}.about{padding:110px 8%;background:linear-gradient(120deg,#244b3c,#102a22);color:white}.about-box{max-width:1000px;margin:auto}.about h2{font-size:clamp(38px,6vw,72px);line-height:1;margin:20px 0}.about p{max-width:680px;color:#cdd8d2}.stats{display:flex;gap:60px;margin-top:55px}.stats div{display:flex;flex-direction:column}.stats strong{font-size:30px;color:#d8b45a}.stats span{font-size:11px;letter-spacing:1px;color:#bdc9c2}footer{padding:35px 8%;display:flex;justify-content:space-between;align-items:center;background:#0c211a;color:#aebdb5;font-size:11px}footer .logo{color:#fff}footer p{margin:0}@media(max-width:950px){.cards{grid-template-columns:repeat(2,1fr)}.intro{grid-template-columns:1fr;gap:25px}.map-section{grid-template-columns:1fr}.map-intro{padding:70px 8%}.route-grid{grid-template-columns:1fr}.nav{display:none}.menu-toggle{display:block}.nav.open{display:flex;position:absolute;top:78px;left:0;right:0;background:#102a22;flex-direction:column;padding:25px 8%;gap:20px}.header{padding:0 7%}}@media(max-width:600px){.cards{grid-template-columns:1fr}.section{padding:75px 6%}.hero{padding:0 7%}.hero p{font-size:16px}.hero-actions{flex-wrap:wrap}.stats{gap:25px;flex-wrap:wrap}footer{flex-direction:column;gap:15px;text-align:center}.card-image{height:210px}}
+</style>
+
+<style>
+.reference{padding:90px 8%;background:#eef2ed}
+.reference-box{max-width:950px;margin:auto;background:#fff;padding:42px;border-radius:14px;box-shadow:0 12px 35px rgba(25,50,40,.08)}
+.reference h2{font-size:42px;line-height:1.1;margin:14px 0}
+.reference p{color:#65736b;max-width:780px}
+.reference-link{display:inline-block;margin-top:22px;padding:13px 18px;border-radius:8px;background:#183b30;color:#fff;text-decoration:none;font-weight:700}
+.footer-center{text-align:center}
+.footer-reference a{color:#d8b45a;text-decoration:none;font-weight:700}
+@media(max-width:600px){.reference{padding:70px 6%}.reference-box{padding:26px}.reference h2{font-size:32px}.footer-center{text-align:center}}
+</style>
+</head>
+<body>
+  <header class="header">
+    <a class="logo" href="#inicio"><span>EXTREMOZ</span><small>Turismo</small></a>
+    <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+    <nav class="nav">
+      <a href="#inicio">Início</a>
+      <a href="#destinos">Destinos</a>
+      <a href="#mapa">Mapa</a>
+      <a href="#roteiros">Roteiros</a>
+      <a href="#sobre">Sobre</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="inicio" class="hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <span class="eyebrow">RIO GRANDE DO NORTE • BRASIL</span>
+        <h1>Descubra<br><strong>Extremoz</strong></h1>
+        <p>Praias, lagoas, natureza e cultura em um só lugar.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#destinos">Explorar destinos</a>
+          <a class="btn ghost" href="#mapa">Abrir mapa</a>
+        </div>
+      </div>
+      <div class="hero-scroll">↓ role para explorar</div>
+    </section>
+
+    <section class="intro section">
+      <div>
+        <span class="eyebrow dark">EXPLORE A CIDADE</span>
+        <h2>Um guia digital para<br><strong>viver Extremoz.</strong></h2>
+      </div>
+      <p>Encontre lugares para conhecer, comer, descansar e aproveitar. A proposta é reunir informações turísticas e serviços locais em uma plataforma simples, bonita e fácil de usar.</p>
+    </section>
+
+    <section id="destinos" class="section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow dark">DESTINOS</span>
+          <h2>Conheça alguns lugares</h2>
+        </div>
+        <button class="filter-btn active" data-filter="todos">Todos</button>
+      </div>
+      <div class="filters">
+        <button class="filter-btn" data-filter="praia">Praias</button>
+        <button class="filter-btn" data-filter="lagoa">Lagoas</button>
+        <button class="filter-btn" data-filter="natureza">Natureza</button>
+        <button class="filter-btn" data-filter="cultura">Cultura</button>
+      </div>
+      <div class="cards" id="destinationCards">
+        <article class="card destination" data-category="praia"><div class="card-image image-genipabu"><span>Praia</span></div><div class="card-body"><small>PRAIA</small><h3>Praia de Genipabu</h3><p>Uma das praias mais famosas de Extremoz, cercada por dunas e lagoas.</p><a href="#mapa" class="card-link" data-place="Praia de Genipabu">Ver no mapa →</a></div></article>
+        <article class="card destination" data-category="praia"><div class="card-image image-genipabu"><span>Praia</span></div><div class="card-body"><small>PRAIA</small><h3>Praia de Santa Rita</h3><p>Trecho do litoral de Extremoz com paisagens de mar, areia e dunas.</p><a href="#mapa" class="card-link" data-place="Praia de Santa Rita">Ver no mapa →</a></div></article>
+        <article class="card destination" data-category="praia"><div class="card-image image-genipabu"><span>Praia</span></div><div class="card-body"><small>PRAIA</small><h3>Praia de Barra do Rio</h3><p>Praia localizada junto à foz do rio, com acesso à região de dunas.</p><a href="#mapa" class="card-link" data-place="Praia de Barra do Rio">Ver no mapa →</a></div></article>
+        <article class="card destination" data-category="praia"><div class="card-image image-genipabu"><span>Praia</span></div><div class="card-body"><small>PRAIA</small><h3>Praia de Graçandu</h3><p>Praia tranquila do litoral norte de Extremoz, próxima a Pitangui.</p><a href="#mapa" class="card-link" data-place="Praia de Graçandu">Ver no mapa →</a></div></article>
+        <article class="card destination" data-category="praia"><div class="card-image image-genipabu"><span>Praia</span></div><div class="card-body"><small>PRAIA</small><h3>Praia de Pitangui</h3><p>Praia de águas claras e paisagens naturais, próxima à Lagoa de Pitangui.</p><a href="#mapa" class="card-link" data-place="Praia de Pitangui">Ver no mapa →</a></div></article>
+        <article class="card destination" data-category="praia"><div class="card-image image-genipabu"><span>Praia</span></div><div class="card-body"><small>PRAIA</small><h3>Praia de Redinha Nova</h3><p>Trecho do litoral sul de Extremoz, na continuidade da faixa costeira.</p><a href="#mapa" class="card-link" data-place="Praia de Redinha Nova">Ver no mapa →</a></div></article>
+        <article class="card destination" data-category="lagoa"><div class="card-image image-lagoa"><span>Lagoa</span></div><div class="card-body"><small>LAGOA</small><h3>Lagoa de Extremoz</h3><p>Um dos principais corpos d'água do município e importante manancial da região.</p><a href="#mapa" class="card-link" data-place="Lagoa de Extremoz">Ver no mapa →</a></div></article>
+        <article class="card destination" data-category="lagoa"><div class="card-image image-lagoa"><span>Lagoa</span></div><div class="card-body"><small>LAGOA</small><h3>Lagoa de Genipabu</h3><p>Lagoa de água doce integrada ao famoso complexo de dunas de Genipabu.</p><a href="#mapa" class="card-link" data-place="Lagoa de Genipabu">Ver no mapa →</a></div></article>
+        <article class="card destination" data-category="lagoa"><div class="card-image image-lagoa"><span>Lagoa</span></div><div class="card-body"><small>LAGOA</small><h3>Lagoa de Pitangui</h3><p>Uma das atrações naturais mais conhecidas da região de Pitangui.</p><a href="#mapa" class="card-link" data-place="Lagoa de Pitangui">Ver no mapa →</a></div></article>
+        <article class="card destination" data-category="natureza"><div class="card-image image-dunas"><span>Aventura</span></div><div class="card-body"><small>NATUREZA</small><h3>Dunas de Genipabu</h3><p>Paisagens de dunas móveis e fixas, famosas pelos passeios de buggy.</p><a href="#mapa" class="card-link" data-place="Dunas de Genipabu">Ver no mapa →</a></div></article>
+        <article class="card destination" data-category="cultura"><div class="card-image image-historico"><span>Cultura</span></div><div class="card-body"><small>CULTURA</small><h3>Centro de Extremoz</h3><p>Área central do município e ponto de referência para conhecer sua história.</p><a href="#mapa" class="card-link" data-place="Centro de Extremoz">Ver no mapa →</a></div></article>
+      </div>
+    </section>
+
+    <section id="mapa" class="map-section">
+      <div class="map-intro">
+        <span class="eyebrow">MAPA INTERATIVO</span>
+        <h2>Encontre seu<br><strong>próximo destino.</strong></h2>
+        <p>Use o mapa para visualizar os principais pontos turísticos cadastrados.</p>
+        <div class="search-box">
+          <input id="searchInput" type="search" placeholder="Pesquisar um lugar...">
+          <button id="searchBtn">Buscar</button>
+        </div>
+        <div id="searchResult" class="search-result"></div>
+      </div>
+      <div id="map"></div>
+    </section>
+
+    <section id="roteiros" class="section routes">
+      <div class="section-heading">
+        <div><span class="eyebrow dark">ROTAS E ROTEIROS</span><h2>Escolha sua experiência</h2></div>
+      </div>
+      <div class="route-grid">
+        <article class="route"><span>01</span><h3>Um dia em Extremoz</h3><p>Uma sugestão de roteiro para conhecer natureza, praia e gastronomia.</p><button onclick="alert('Roteiro em desenvolvimento.')">Ver roteiro</button></article>
+        <article class="route"><span>02</span><h3>Rota das praias</h3><p>Explore o litoral e descubra paisagens para curtir durante o dia.</p><button onclick="alert('Roteiro em desenvolvimento.')">Ver roteiro</button></article>
+        <article class="route"><span>03</span><h3>Natureza e aventura</h3><p>Uma experiência para quem quer conhecer dunas, lagoas e paisagens naturais.</p><button onclick="alert('Roteiro em desenvolvimento.')">Ver roteiro</button></article>
+      </div>
+    </section>
+
+    <section id="sobre" class="about">
+      <div class="about-box">
+        <span class="eyebrow">SOBRE O PROJETO</span>
+        <h2>Extremoz na palma da sua mão.</h2>
+        <p>Esta plataforma foi pensada para centralizar informações turísticas e valorizar os pontos de interesse e os negócios locais de Extremoz.</p>
+        <div class="stats"><div><strong>01</strong><span>Mapa digital</span></div><div><strong>+</strong><span>Destinos</span></div><div><strong>100%</strong><span>Online</span></div></div>
+      </div>
+    </section>
+  
+<section class="reference" id="referencia">
+  <div class="reference-box">
+    <span class="eyebrow dark">REFERÊNCIA DO PROJETO</span>
+    <h2>Site utilizado como exemplo</h2>
+    <p>Este projeto foi desenvolvido como uma proposta acadêmica inspirada na organização de navegação por cidades, mapas e rotas turísticas do portal Mapas Turísticos Online.</p>
+    <a class="reference-link" href="https://mapasturon.com.br/site/" target="_blank">Visitar o site de referência ↗</a>
+  </div>
+</section>
+</main>
+
+  
+<footer>
+  <div class="logo"><span>EXTREMOZ</span><small>Turismo</small></div>
+  <div class="footer-center">
+    <p>Projeto acadêmico • 2026</p>
+    <p>Desenvolvido para o TCC sobre Turismo em Extremoz.</p>
+    <p class="footer-reference">Site de referência escolhido como exemplo: <a href="https://mapasturon.com.br/site/" target="_blank">Mapas Turísticos Online</a></p>
+  </div>
+  <p>© <span id="year"></span> Extremoz Turismo</p>
+</footer>
+
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  
+<script>
+const places=[
+{name:'Lagoa de Extremoz',coords:[-5.7052,-35.2818],category:'Lagoa'},
+{name:'Lagoa de Genipabu',coords:[-5.7086,-35.2096],category:'Lagoa'},
+{name:'Lagoa de Pitangui',coords:[-5.64673,-35.2289],category:'Lagoa'},
+{name:'Praia de Genipabu',coords:[-5.7089,-35.1967],category:'Praia'},
+{name:'Praia de Santa Rita',coords:[-5.695701,-35.196986],category:'Praia'},
+{name:'Praia de Barra do Rio',coords:[-5.681942,-35.215201],category:'Praia'},
+{name:'Praia de Graçandu',coords:[-5.643934,-35.218404],category:'Praia'},
+{name:'Praia de Pitangui',coords:[-5.63256,-35.22136],category:'Praia'},
+{name:'Praia de Redinha Nova',coords:[-5.7466,-35.2040],category:'Praia'},
+{name:'Dunas de Genipabu',coords:[-5.694103,-35.206123],category:'Aventura'},
+{name:'Centro de Extremoz',coords:[-5.7024,-35.3046],category:'Cultura'}
+];
+const map=L.map('map').setView([-5.68,-35.26],12);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
+const markers={};
+places.forEach(p=>{const m=L.marker(p.coords).addTo(map);m.bindPopup('<strong>'+p.name+'</strong><br><small>'+p.category+'</small>');markers[p.name.toLowerCase()]=m;});
+document.querySelectorAll('.filter-btn').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const f=btn.dataset.filter;document.querySelectorAll('.destination').forEach(c=>c.style.display=(f==='todos'||c.dataset.category===f)?'block':'none');}));
+document.querySelectorAll('.card-link').forEach(link=>link.addEventListener('click',()=>{const m=markers[link.dataset.place.toLowerCase()];if(m){setTimeout(()=>{map.setView(m.getLatLng(),14);m.openPopup();},300);}}));
+const input=document.getElementById('searchInput'),btn=document.getElementById('searchBtn'),result=document.getElementById('searchResult');
+function buscar(){const t=input.value.trim().toLowerCase();if(!t){result.textContent='Digite o nome de um lugar.';return;}const p=places.find(x=>x.name.toLowerCase().includes(t));if(p){map.setView(p.coords,14);markers[p.name.toLowerCase()].openPopup();result.textContent='Encontrado: '+p.name;}else result.textContent='Lugar não encontrado no cadastro atual.';}
+btn.addEventListener('click',buscar);input.addEventListener('keydown',e=>{if(e.key==='Enter')buscar();});
+document.querySelector('.menu-toggle').addEventListener('click',()=>document.querySelector('.nav').classList.toggle('open'));
+document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',()=>document.querySelector('.nav').classList.remove('open')));
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+
+</body>
+</html>
